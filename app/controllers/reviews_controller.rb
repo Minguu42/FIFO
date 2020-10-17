@@ -24,9 +24,17 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:success] = 'レビューを更新しました。'
+      redirect_to reviews_url
+    else
+      render 'reviews/edit'
+    end
   end
 
   def destroy
