@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      flash[:success] = 'レビューを更新しました。'
+      flash[:success] = 'レビューを更新しました'
       redirect_to reviews_url
     else
       render 'reviews/edit'
@@ -38,6 +38,9 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    Review.find(params[:id]).destroy
+    flash[:success] = 'レビューの削除に成功しました'
+    redirect_to reviews_url
   end
 
   private

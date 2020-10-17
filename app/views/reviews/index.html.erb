@@ -4,6 +4,7 @@
     <ul>
       <li><%= review.title %></li>
       <li><%= link_to '編集', edit_hackathon_review_path(review.hackathon_id, review.id), class: 'btn btn-success' %></li>
+      <li><%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></li>
     </ul>
   <% end %>
 <% end %>
