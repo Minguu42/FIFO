@@ -9,7 +9,11 @@
     <% end %>
     <h1 class="display-4"><%= @hackathon.name %></h1>
     <p class="lead"><%= @hackathon.description %><br>
-      初心者におすすめ度：<%= calculate_level_average(@hackathon) %></p>
+      <% if calculate_level_average(@hackathon) == 0 %>
+        まだレビューされていません
+      <% else %>
+        初心者におすすめ度：<%= calculate_level_average(@hackathon) %>
+      <% end %></p>
     <p><%= link_to '応募ページをみる', @hackathon.url, class: 'btn btn-outline-info mt-3' %></p>
     <p><%= link_to 'このハッカソンのレビューを書く', new_hackathon_review_path(@hackathon.id), class: 'btn btn-outline-success' %></p>
   </div>

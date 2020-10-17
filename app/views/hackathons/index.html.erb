@@ -30,8 +30,14 @@
             <% end %>
             <h5 class="card-title"><%= hackathon.name %></h5>
             <p class="card-text"><%= hackathon.description %><br>
-              初心者におすすめ度：<%= calculate_level_average(hackathon) %></p>
+              <% if calculate_level_average(hackathon) == 0 %>
+                まだレビューされていません
+              <% else %>
+                初心者におすすめ度：<%= calculate_level_average(hackathon) %>
+              <% end %>
+            </p>
             <%= link_to 'レビューをみる', hackathon_path(hackathon.id), class: 'btn btn-outline-info' %>
+            <p class="card-text mt-2"><small class="text-muted"><%= time_ago_in_words(hackathon.created_at) %></small></p>
           </div>
         </div>
       <% end %>
