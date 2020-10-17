@@ -1,1 +1,8 @@
 <h1>Hello World!! ハッカソン一覧ページ</h1>
+
+<% if @hackathons.any? %>
+  <% @hackathons.each do |hackathon| %>
+    <p><%= hackathon.name %></p>
+    <p><%= link_to '詳細', hackathon_path(hackathon.id) %></p>
+  <% end %>
+<% end %>
