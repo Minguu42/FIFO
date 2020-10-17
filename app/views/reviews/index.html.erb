@@ -1,12 +1,47 @@
-<h1><%=@user.username %></h1>
-<% if @reviews.any? %>
-  <% @reviews.each do |review| %>
-    <ul>
-      <li><%= review.title %></li>
-      <li><%= link_to '編集', edit_hackathon_review_path(review.hackathon_id, review.id), class: 'btn btn-success' %></li>
-      <li><%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></li>
-    </ul>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <%= gravatar_for @user, 60 %>
+        <h5 class="card-title"><%= @user.username %></h5>
+        <p class="card-text"><%= @user.self_introduction %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <%= link_to 'プロフィールの編集', edit_user_registration_path, class: 'list-group-item' %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h2 class="ml-5">ハッカソン経歴</h2>
+    <hr>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div class="card mb-3 ml-5" style="max-width: 800px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"/>
+                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text>
+              </svg>
+            </div>
+            <div class="col-md-8">
+              <h5 class="card-header"><%= review.role %></h5>
+              <div class="card-body">
+                <h5 class="card-title"><%= review.title %></h5>
+                <p class="card-text"><%= review.comment %></p>
+                <p>
+                  <%= link_to '編集', edit_hackathon_review_path(review.hackathon_id, review.id), class: 'btn btn-success mr-1' %>
+                  <%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
+                </p>
+                <p class="card-text"><small class="text-muted"><%= time_ago_in_words(review.created_at) %></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'プロフィールの編集', edit_user_registration_path, class: 'nav-item nav-link' %>
+
