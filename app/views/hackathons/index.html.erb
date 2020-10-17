@@ -1,10 +1,35 @@
-<h1 class="mb-3">Hello World!! ハッカソン一覧ページ</h1>
-
-<%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-primary mb-5' %>
-
-<% if @hackathons.any? %>
-  <% @hackathons.each do |hackathon| %>
-    <p><%= hackathon.name %></p>
-    <p><%= link_to '詳細', hackathon_path(hackathon.id) %></p>
-  <% end %>
+<% unless signed_in? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <h1 class="display-4">初めてのハッカソンに参加しよう！</h1>
+        <p class="lead">First Ippo For hackathon Outputにようこそ</p>
+        <hr class="my-4">
+        <p>初めてのハッカソンへの参加を考えている人は、<br>みんなのハッカソン参加レビューを見て、不安を取り除き、第一歩を歩もう！</p>
+        <p>ハッカソンの経験がある人は、レビューして自分のハッカソンの経歴を作ろう！</p>
+        <%= link_to 'サインアップする', new_user_registration_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+<div class="row">
+  <div class="col-md-9">
+    <h3 class="mb-3">ハッカソン一覧</h3>
+    <hr>
+    <% if @hackathons.any? %>
+      <% @hackathons.each do |hackathon| %>
+        <div class="card mb-5 w-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= hackathon.name %></h5>
+            <p class="card-text"><%= hackathon.description %></p>
+            <%= link_to '詳細', hackathon_path(hackathon.id), class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-3 text-center mt-5">
+    <%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-lg btn-primary mb-5' %>
+  </div>
+</div>
