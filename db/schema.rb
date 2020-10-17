@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_014244) do
+ActiveRecord::Schema.define(version: 2020_10_17_042807) do
+
+  create_table "hackathons", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "url"
+    t.integer "holding_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_hackathons_on_created_at"
+    t.index ["holding_time"], name: "index_hackathons_on_holding_time"
+    t.index ["name"], name: "index_hackathons_on_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
