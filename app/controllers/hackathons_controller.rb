@@ -23,9 +23,17 @@ class HackathonsController < ApplicationController
   end
 
   def edit
+    @hackathon = Hackathon.find(params[:id])
   end
 
   def update
+    @hackathon = Hackathon.find(params[:id])
+    if @hackathon.update(hackathon_params)
+      flash[:success] = "ハッカソンを更新しました"
+      redirect_to hackathon_url(@hackathon.id)
+    else
+      render 'hackathons/edit'
+    end
   end
 
   def destroy
