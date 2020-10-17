@@ -1,0 +1,8 @@
+<h1>ユーザーマイページ</h1>
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    <ul>
+      <li><%= review.title %></li>
+    </ul>
+  <% end %>
+<% end %>
