@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'hackathons#index'
+  devise_for :users
+  resources :hackathons
 end
