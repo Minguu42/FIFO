@@ -1,1 +1,10 @@
-<h1>Hello World!! ハッカソン一覧ページ</h1>
+<h1 class="mb-3">Hello World!! ハッカソン一覧ページ</h1>
+
+<%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-primary mb-5' %>
+
+<% if @hackathons.any? %>
+  <% @hackathons.each do |hackathon| %>
+    <p><%= hackathon.name %></p>
+    <p><%= link_to '詳細', hackathon_path(hackathon.id) %></p>
+  <% end %>
+<% end %>
