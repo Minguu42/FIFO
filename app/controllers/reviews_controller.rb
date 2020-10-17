@@ -1,12 +1,24 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
+    @reviews = current_user.reviews
   end
 
   def new
+    @hackathon = Hackathon.find(params[:hackathon_id])
+    @review = current_user.reviews.build
   end
 
   def create
+    @hackathon = Hackathon.find(params[:hackathon_id])
+    @review = current_user.reviews.build(review_params)
+    if @review.save
+      flash[:success] = 'レビューを作成しました。'
+      redirect_to hackathon_path(@hackathon.id)
+    else
+      render 'reviews/new'
+    end
   end
 
   def edit
@@ -17,4 +29,9 @@ class ReviewsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def review_params
+      params.require(:review).permit(:title, :role, :level, :comment)
+    end
 end
