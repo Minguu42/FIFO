@@ -2,3 +2,4 @@
 <p><%= @hackathon.description %></p>
 <p><%= @hackathon.url %></p>
 <p><%= link_to 'ハッカソンを編集', edit_hackathon_path(@hackathon.id), class: 'btn btn-primary mt-5' %></p>
+<p><%= link_to '削除', hackathon_path(@hackathon.id), method: :delete, data: {confirm: '本当に削除しますか'}, class: 'btn btn-danger mt-3' %></p>

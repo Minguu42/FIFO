@@ -37,6 +37,9 @@ class HackathonsController < ApplicationController
   end
 
   def destroy
+    Hackathon.find(params[:id]).destroy
+    flash[:success] = "ハッカソンを削除しました"
+    redirect_to root_url
   end
 
   private
