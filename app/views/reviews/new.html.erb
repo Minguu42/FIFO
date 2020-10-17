@@ -17,7 +17,7 @@
 
   <p>
     <%= f.label :image, '画像のアップロード' %>
-    <%= f.file_field :image, class: 'form-control' %>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: 'form-control' %>
   </p>
 
   <%= f.submit 'レビューの投稿', class: "btn btn-primary" %>
