@@ -9,10 +9,17 @@ class HackathonsController < ApplicationController
   end
 
   def new
+    @hackathon = Hackathon.new
   end
 
   def create
     @hackathon = Hackathon.new(hackathon_params)
+    if @hackathon.save
+      flash[:success] = "新しいハッカソンを作成しました"
+      redirect_to root_url
+    else
+      render 'hackathons/new'
+    end
   end
 
   def edit
