@@ -14,7 +14,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
     <h3 class="mb-3">ハッカソン一覧</h3>
     <hr>
     <% if @hackathons.any? %>
@@ -43,7 +43,11 @@
       <% end %>
     <% end %>
   </div>
-  <div class="col-md-3 text-center mt-5">
-    <%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-lg btn-primary mb-5' %>
+  <div class="col-md-4 text-center mt-5">
+    <%= form_tag(hackathons_search_path, method: :get, class: 'form-inline mt-3') do %>
+      <%= text_field_tag :search, '', class: 'form-control mr-2', placeholder: 'ハッカソン名' %>
+      <%= submit_tag '検索', :name => nil, class: 'btn btn-outline-success' %>
+    <% end %>
   </div>
 </div>
+<%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-lg btn-primary mb-5' %>
