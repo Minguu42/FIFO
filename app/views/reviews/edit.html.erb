@@ -1,0 +1,18 @@
+<%= form_with(model: [@hackathon, @review], url: hackathon_review_path, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :title, 'タイトル' %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :role, '役割' %>
+  <%= f.text_field :role, class: 'form-control' %>
+
+  <%= f.label :comment, '感想' %>
+  <%= f.text_area :comment, size: "10x5", class: 'form-control' %>
+
+  <%= f.label :level, '初心者へのおすすめ度' %>
+  <%= f.select :level, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], include_blank: "選択して下さい" %>
+
+  <%= f.submit 'レビューの編集', class: "btn btn-primary" %>
+
+<% end %>

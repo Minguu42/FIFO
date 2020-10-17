@@ -6,6 +6,7 @@ class HackathonsController < ApplicationController
 
   def show
     @hackathon = Hackathon.find(params[:id])
+    @reviews = @hackathon.reviews.all
   end
 
   def new
