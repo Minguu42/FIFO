@@ -12,6 +12,7 @@ class HackathonsController < ApplicationController
   end
 
   def create
+    @hackathon = Hackathon.new(hackathon_params)
   end
 
   def edit
@@ -22,4 +23,9 @@ class HackathonsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def hackathon_params
+      params.require(:hackathon).permit(:name, :description, :url, :holding_time)
+    end
 end
