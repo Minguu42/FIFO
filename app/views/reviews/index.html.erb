@@ -29,7 +29,7 @@
               <h5 class="card-header"><%= review.role %></h5>
               <div class="card-body">
                 <h5 class="card-title"><%= review.title %></h5>
-                <p class="card-text"><%= review.comment %></p>
+                <p class="card-text">初心者にお勧め度：<%= review.level %><br><%= review.comment %></p>
                 <p>
                   <%= link_to '編集', edit_hackathon_review_path(review.hackathon_id, review.id), class: 'btn btn-success mr-1' %>
                   <%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>

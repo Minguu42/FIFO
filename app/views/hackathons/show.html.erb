@@ -1,17 +1,42 @@
-<h2><%= @hackathon.name %>の詳細ページ</h2>
-<p><%= @hackathon.description %></p>
-<p><%= @hackathon.url %></p>
-<p><%= link_to 'このハッカソンのレビューを書く', new_hackathon_review_path(@hackathon.id), class: 'btn btn-success mt-5' %></p>
-<p><%= link_to 'ハッカソンを編集', edit_hackathon_path(@hackathon.id), class: 'btn btn-primary mt-5' %></p>
-<p><%= link_to '削除', hackathon_path(@hackathon.id), method: :delete, data: {confirm: '本当に削除しますか'}, class: 'btn btn-danger mt-3' %></p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= @hackathon.name %></h1>
+    <p class="lead"><%= @hackathon.description %></p>
+    <p><%= link_to '応募ページをみる', @hackathon.url, class: 'btn btn-outline-info mt-3' %></p>
+    <p><%= link_to 'このハッカソンのレビューを書く', new_hackathon_review_path(@hackathon.id), class: 'btn btn-outline-success' %></p>
+  </div>
+</div>
 
-<h3>ハッカソンのレビュー一覧</h3>
+<h2>レビュー一覧</h2>
+<hr>
 <% if @reviews.any? %>
-  <ul>
-    <% @reviews.each do |review| %>
-      <li><%= review.title %></li>
-    <% end %>
-  </ul>
+  <% @reviews.each do |review| %>
+    <div class="card mb-3 ml-5" style="max-width: 800px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"/>
+            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text>
+          </svg>
+        </div>
+        <div class="col-md-8">
+          <h5 class="card-header"><%= review.role %></h5>
+          <div class="card-body">
+            <h5 class="card-title"><%= review.title %></h5>
+            <p class="card-text">初心者にお勧め度：<%= review.level %><br><%= review.comment %></p>
+            <p>
+              <%= link_to '編集', edit_hackathon_review_path(review.hackathon_id, review.id), class: 'btn btn-success mr-1' %>
+              <%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
+            </p>
+            <p class="card-text"><small class="text-muted"><%= time_ago_in_words(review.created_at) %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% else %>
   <p>まだレビューが投稿されていません</p>
 <% end %>
+<p><%= link_to 'ハッカソンを編集', edit_hackathon_path(@hackathon.id), class: 'btn btn-primary mt-5' %></p>
+<p><%= link_to '削除', hackathon_path(@hackathon.id), method: :delete, data: {confirm: '本当に削除しますか'}, class: 'btn btn-danger mt-3' %></p>
