@@ -15,7 +15,7 @@
         初心者におすすめ度：<%= calculate_level_average(@hackathon) %>
       <% end %></p>
     <p><%= link_to '申し込む', @hackathon.url, class: 'btn btn-outline-info mt-3' %></p>
-    <p><%= link_to 'Twitterで誰かを誘う', "https://twitter.com/intent/tweet?url=https://#{@hackathon.url}/&text=誰かいっしょにやろう！", class: "btn btn-outline-primary" %></p>
+    <p><%= link_to 'Twitterで誰かを誘う', "https://twitter.com/intent/tweet?url=#{@hackathon.url}/&text=誰かいっしょにやろう！", class: "btn btn-outline-primary" %></p>
     <p><%= link_to 'レビューを書く', new_hackathon_review_path(@hackathon.id), class: 'btn btn-outline-success' %></p>
   </div>
 </div>
