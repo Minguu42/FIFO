@@ -10,6 +10,10 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'active_storage_validations'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
 gem 'devise'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

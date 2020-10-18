@@ -1,10 +1,53 @@
-<h1 class="mb-3">Hello World!! ハッカソン一覧ページ</h1>
-
-<%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-primary mb-5' %>
-
-<% if @hackathons.any? %>
-  <% @hackathons.each do |hackathon| %>
-    <p><%= hackathon.name %></p>
-    <p><%= link_to '詳細', hackathon_path(hackathon.id) %></p>
-  <% end %>
+<% unless signed_in? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <h1 class="display-4">初めてのハッカソンに参加しよう！</h1>
+        <p class="lead">FIFO(First Ippo For hackathon Output)にようこそ</p>
+        <hr class="my-4">
+        <p>初めてのハッカソンへの参加を考えている人は、<br>みんなのハッカソン参加レビューを見て、不安を取り除き、第一歩を歩もう！</p>
+        <p>ハッカソンの経験がある人は、レビューして自分のハッカソンの経歴を作ろう！</p>
+        <%= link_to 'サインアップする', new_user_registration_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3 class="mb-3">ハッカソン一覧</h3>
+    <hr>
+    <% if @hackathons.any? %>
+      <% @hackathons.each do |hackathon| %>
+        <div class="card mb-5 w-100">
+          <div class="card-body">
+            <% if calculate_level_average(hackathon) >= 4 %>
+              <span class="badge badge-success mb-3">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-star" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                </svg>初心者におすすめ
+              </span>
+            <% end %>
+            <h5 class="card-title"><%= hackathon.name %></h5>
+            <p class="card-text"><%= hackathon.description %><br>
+              <% if calculate_level_average(hackathon) == 0 %>
+                まだレビューされていません
+              <% else %>
+                初心者におすすめ度：<%= calculate_level_average(hackathon) %>
+              <% end %>
+            </p>
+            <%= link_to 'レビューをみる', hackathon_path(hackathon.id), class: 'btn btn-outline-info' %>
+            <p class="card-text mt-2"><small class="text-muted"><%= time_ago_in_words(hackathon.created_at) %></small></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-4 text-center mt-5">
+    <%= form_tag(hackathons_search_path, method: :get, class: 'form-inline mt-3') do %>
+      <%= text_field_tag :search, '', class: 'form-control mr-2', placeholder: 'ハッカソン名' %>
+      <%= submit_tag '検索', :name => nil, class: 'btn btn-outline-success' %>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'ハッカソンの作成', new_hackathon_path, class: 'btn btn-lg btn-primary mb-5' %>

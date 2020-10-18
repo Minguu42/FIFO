@@ -43,6 +43,11 @@ class HackathonsController < ApplicationController
     redirect_to root_url
   end
 
+  def search
+    @hackathons = Hackathon.search(params[:search])
+    render 'hackathons/index'
+  end
+
   private
     def hackathon_params
       params.require(:hackathon).permit(:name, :description, :url, :holding_time)

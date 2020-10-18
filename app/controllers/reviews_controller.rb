@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
   def create
     @hackathon = Hackathon.find(params[:hackathon_id])
     @review = @hackathon.reviews.build(review_params)
+    @review.image.attach(params[:review][:image])
     @review.user_id = current_user.id
     if @review.save
       flash[:success] = 'レビューを作成しました。'
@@ -45,6 +46,6 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:title, :role, :level, :comment)
+      params.require(:review).permit(:title, :role, :level, :comment, :image)
     end
 end

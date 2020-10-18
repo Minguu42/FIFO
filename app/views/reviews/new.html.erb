@@ -10,8 +10,15 @@
   <%= f.label :comment, '感想' %>
   <%= f.text_area :comment, size: "10x5", class: 'form-control' %>
 
-  <%= f.label :level, '初心者へのおすすめ度' %>
-  <%= f.select :level, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], include_blank: "選択して下さい" %>
+  <p>
+    <%= f.label :level, '初心者へのおすすめ度' %>
+    <%= f.select :level, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], include_blank: "選択して下さい" %>
+  </p>
+
+  <p>
+    <%= f.label :image, '画像のアップロード' %>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: 'form-control' %>
+  </p>
 
   <%= f.submit 'レビューの投稿', class: "btn btn-primary" %>
 
