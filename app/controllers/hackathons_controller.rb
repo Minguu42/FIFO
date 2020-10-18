@@ -49,6 +49,9 @@ class HackathonsController < ApplicationController
     render 'hackathons/search'
   end
 
+  def cheer
+  end
+
   private
     def hackathon_params
       params.require(:hackathon).permit(:name, :description, :url, :holding_time)
