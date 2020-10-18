@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+/*ハッカソン一覧ページ*/
+ .display-4{
+   background-color: rgba(236, 46, 84,0.5) ;
+ }
