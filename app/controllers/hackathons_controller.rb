@@ -1,7 +1,7 @@
 class HackathonsController < ApplicationController
 
   def index
-    @hackathons = Hackathon.all
+    @hackathons = Hackathon.page(params[:page]).per(6)
   end
 
   def show
@@ -44,8 +44,9 @@ class HackathonsController < ApplicationController
   end
 
   def search
-    @hackathons = Hackathon.search(params[:search])
-    render 'hackathons/index'
+    @search_word = params[:search]
+    @hackathons = Hackathon.search(@search_word)
+    render 'hackathons/search'
   end
 
   private

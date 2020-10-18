@@ -15,7 +15,7 @@
 
 <div class="row">
   <div class="col-md-8">
-    <h3 class="mb-3">ハッカソン一覧</h3>
+    <h3 class="mb-3">検索結果: <%= @search_word %></h3>
     <hr>
     <% if @hackathons.any? %>
       <% @hackathons.each do |hackathon| %>
@@ -43,7 +43,6 @@
         </div>
       <% end %>
     <% end %>
-    <%= paginate @hackathons %>
   </div>
   <div class="col-md-4 text-center mt-5">
     <%= form_tag(hackathons_search_path, method: :get, class: 'form-inline mt-3') do %>
