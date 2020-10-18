@@ -44,6 +44,13 @@ class ReviewsController < ApplicationController
     redirect_to reviews_url
   end
 
+  def like
+    @review = Review.find(params[:id])
+    num = @review.like_num + 1
+    @review.update_attribute(:like_num, num)
+    redirect_back(fallback_location: root_url)
+  end
+
   private
     def review_params
       params.require(:review).permit(:title, :role, :level, :comment, :image)
