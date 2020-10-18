@@ -46,8 +46,7 @@ class ReviewsController < ApplicationController
 
   def like
     @review = Review.find(params[:id])
-    num = @review.like_num + 1
-    @review.update_attribute(:like_num, num)
+    @review.update_attribute(:like_num, @review.like_num + 1)
     redirect_back(fallback_location: root_url)
   end
 

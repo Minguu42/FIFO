@@ -33,7 +33,9 @@
                     <%= link_to '削除', review_path(review.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
                   </p>
                   <p class="card-text ml-2">
-                    <small class="text-muted"><%= time_ago_in_words(review.created_at) %></small></p>
+                    <small class="text-muted">by <%= review.user.username %>
+                      , <%= time_ago_in_words(review.created_at) %></small>
+                  </p>
                 </div>
               </div>
             <% else %>
@@ -48,7 +50,9 @@
                   </p>
                   <p class="card-text">
                     <span class="badge badge-info mr-1"><%= "いいね #{review.like_num}" %></span>
-                    <small class="text-muted"><%= time_ago_in_words(review.created_at) %></small></p>
+                    <small class="text-muted">by <%= review.user.username %>
+                      , <%= time_ago_in_words(review.created_at) %></small>
+                  </p>
                 </div>
               </div>
             <% end %>
