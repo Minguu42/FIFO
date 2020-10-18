@@ -37,6 +37,7 @@
               <% end %>
             </p>
             <%= link_to 'レビューをみる', hackathon_path(hackathon.id), class: 'btn btn-outline-info' %>
+            <%= link_to '申し込む', hackathon.url, class: 'btn btn-outline-success ml-3' %>
             <p class="card-text mt-2"><small class="text-muted"><%= time_ago_in_words(hackathon.created_at) %></small>
             </p>
           </div>
